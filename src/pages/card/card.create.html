@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Create Card</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    {{ cardResult | json }}
+
+    <button ion-button full (click)="createCard()">Create</button>
+    <button ion-button full (click)="getCard()">Get</button>
+</ion-content>

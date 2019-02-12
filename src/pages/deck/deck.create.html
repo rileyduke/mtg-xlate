@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Create Deck</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-input placeholder="name" [(ngModel)]="name"></ion-input>
+    <ion-textarea placeholder="description" [(ngModel)]="description"></ion-textarea>
+    <button ion-button primary full (click)="createDeck()">Create Deck</button>
+</ion-content>

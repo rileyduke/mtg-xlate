@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Search</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-searchbar (keyup.enter)="closeKeyboard()" [(ngModel)]="searchTerm" (change)="searchJisho($event,searchTerm)" autocorrect="off"></ion-searchbar>
+    </ion-item>
+
+    <div *ngFor="let result of returnJSON.data">
+      <div>
+        <ion-card>
+          <ion-card-header>
+            {{ result.japanese[0].word }}
+          </ion-card-header>
+          <ion-card-content>
+            <div><!-- *ngFor="let jap of result.japanese" -->
+              {{ result.japanese[0].reading }}
+            </div>
+            <div *ngFor="let sense of result.senses">
+              <div *ngFor="let eng of sense.english_definitions">
+                {{eng}}
+              </div>
+            </div>
+            <ion-list>
+              <button small ion-item (click)="createCard(result)">
+                <ion-icon name='add' item-right></ion-icon>
+                Create Card
+              </button>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </ion-list>
+</ion-content>

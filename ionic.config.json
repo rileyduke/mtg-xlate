@@ -1,0 +1,14 @@
+{
+  "name": "pjisho_ionic",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+    {
+      "path": "/",
+      "proxyUrl": "http://cors.api.com/"
+    }
+  ]
+}
