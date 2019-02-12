@@ -7,7 +7,7 @@ import { GLOBALS } from '../../helper/global';
 import { SearchService } from './search.service';
 
 import { CardCreate } from '../card/card.create';
-
+import * as Magic from "mtgsdk-ts";
 import { KeywordResult } from '../../models/KeywordResult';
 import { DataResult } from '../../models/DataResult';
 
@@ -19,6 +19,8 @@ import { DataResult } from '../../models/DataResult';
 export class SearchPage {
   searchTerm: string;
   returnJSON: KeywordResult;
+
+  resultCards: Magic.Card[];
 
   constructor(public navCtrl: NavController, 
     private globals: GLOBALS,
@@ -40,9 +42,17 @@ export class SearchPage {
   
     this.renderer.invokeElementMethod(event.target, 'blur');
     this.keyboard.close();
-    this.searchService.getJishoTerm(term).subscribe(result => {
+    // this.searchService.getJishoTerm(term).subscribe(result => {
+    //   loading.dismiss();
+    //   this.returnJSON = result;
+    // });
+
+    Magic.Cards.where({name: term, language: 'japanese'}).then(results => {
+      for (const card of results) {
+        console.log(card);
+      }
+      this.resultCards = results;
       loading.dismiss();
-      this.returnJSON = result;
     });
   }
 
